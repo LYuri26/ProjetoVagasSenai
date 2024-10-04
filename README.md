@@ -94,8 +94,3 @@ Se você quiser contribuir para este projeto, sinta-se à vontade para enviar um
 ## Licença
 
 Este projeto está licenciado sob a **MIT License** - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
-### O que foi ajustado:
-- **Nome** e **cargo** adicionados na seção "Autor".
-- Link para o perfil do GitHub adicionado na mesma seção.
-- O link para o repositório foi atualizado com seu nome de usuário do GitHub: `https://github.com/LYuri26/ProjetoVagasSenai.git` (substitua o `seu-repositorio` com o nome real do repositório que você criar).
