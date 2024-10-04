@@ -1,0 +1,230 @@
+/* Estilos gerais */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f8ff; /* Cor de fundo suave */
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Estilos do cabeçalho */
+header {
+    background-color: #004080; /* Azul escuro */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+header img {
+    height: 50px;
+    margin-bottom: 10px; /* Adicionado para espaçamento abaixo da imagem */
+}
+
+header h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+/* Estilos para o conteúdo principal */
+main {
+    padding: 30px;
+    text-align: center;
+    flex: 1;
+}
+
+h1 {
+    color: #004080; /* Azul escuro */
+    font-size: 28px; /* Tamanho da fonte aumentado */
+    margin-bottom: 20px; /* Espaçamento inferior */
+}
+
+/* Estilos para o campo de upload */
+input[type="file"] {
+    display: none; /* Oculta o input de arquivo */
+}
+
+/* Estilos para o drag-and-drop */
+#drop-zone {
+    border: 2px dashed #007bff; /* Azul padrão */
+    border-radius: 10px;
+    padding: 40px; /* Aumentado para melhor área de clique */
+    text-align: center;
+    color: #007bff;
+    margin: 20px 0; /* Espaçamento vertical */
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Transição suave */
+}
+
+#drop-zone:hover {
+    background-color: #e0f0ff; /* Azul claro */
+}
+
+#drop-zone.dragging {
+    background-color: #e6f7ff; /* Azul claro ao arrastar */
+}
+
+/* Estilos para os botões */
+button {
+    background-color: #007bff; /* Azul padrão do Bootstrap */
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    margin-top: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s; /* Transições suaves */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+button:hover {
+    background-color: #0056b3; /* Azul mais escuro ao passar o mouse */
+    transform: scale(1.05); /* Efeito de aumento ao passar o mouse */
+}
+
+/* Estilos para a área de exibição */
+#display-area {
+    border: 1px solid #ccc;
+    padding: 10px;
+    height: 400px; /* Tamanho fixo para o display */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0; /* Espaçamento vertical */
+}
+
+/* Estilos para os itens carregados */
+.uploaded-items {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column; /* Alinha itens verticalmente */
+    align-items: center; /* Centraliza itens */
+}
+
+.uploaded-items .item {
+    margin: 10px;
+    display: inline-block;
+    position: relative;
+    width: 200px; /* Largura dos itens */
+    text-align: center;
+    border: 1px solid #ccc; /* Borda sutil */
+    border-radius: 5px; /* Cantos arredondados */
+    overflow: hidden; /* Para garantir que o conteúdo não vaze */
+    background-color: white; /* Fundo branco */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: transform 0.2s; /* Transição suave */
+}
+
+.uploaded-items .item:hover {
+    transform: translateY(-5px); /* Efeito de levitação ao passar o mouse */
+}
+
+.uploaded-items img,
+.uploaded-items video {
+    width: 100%;
+    border-radius: 5px;
+}
+
+/* Estilos para o botão de deletar */
+.delete-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Estilos para o campo de tempo */
+.uploaded-items input[type="number"] {
+    width: 100%; /* Ajusta a largura do campo de tempo */
+    padding: 10px; /* Adiciona espaço interno */
+    margin-top: 10px; /* Espaço acima do campo */
+    border: 1px solid #ccc; /* Borda sutil */
+    border-radius: 5px; /* Cantos arredondados */
+    font-size: 16px; /* Tamanho da fonte maior */
+    transition: border-color 0.3s; /* Transição suave na borda */
+}
+
+.uploaded-items input[type="number"]:hover {
+    border-color: #007bff; /* Azul ao passar o mouse */
+}
+
+/* Estilos para a mensagem de feedback */
+.alert {
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 5px; /* Bordas arredondadas */
+    display: none; /* Inicialmente oculto */
+}
+
+/* Estilos do rodapé */
+footer {
+    background-color: #004080; /* Azul escuro */
+    color: white;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    margin-top: auto; /* Garante que o rodapé fique ao final da página */
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    header h2 {
+        font-size: 20px;
+    }
+
+    header img {
+        height: 40px;
+    }
+
+    button {
+        padding: 12px 20px;
+        font-size: 14px; /* Tamanho da fonte reduzido */
+    }
+
+    #drop-zone {
+        padding: 30px; /* Ajustado para telas menores */
+    }
+
+    .uploaded-items .item {
+        width: 150px; /* Largura menor para telas pequenas */
+    }
+
+    .uploaded-items input[type="number"] {
+        font-size: 14px; /* Tamanho da fonte reduzido */
+    }
+}
+
+@media (max-width: 480px) {
+    header h2 {
+        font-size: 18px;
+    }
+
+    header img {
+        height: 30px;
+    }
+
+    button {
+        padding: 10px 15px;
+        font-size: 12px; /* Tamanho da fonte reduzido */
+    }
+
+    #drop-zone {
+        padding: 20px; /* Ajustado para telas muito pequenas */
+    }
+
+    .uploaded-items .item {
+        width: 100px; /* Largura menor para telas muito pequenas */
+    }
+
+    .uploaded-items input[type="number"] {
+        font-size: 12px; /* Tamanho da fonte reduzido */
+    }
+}
