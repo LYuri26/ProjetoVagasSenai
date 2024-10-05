@@ -8,23 +8,34 @@ A estrutura de pastas e arquivos é a seguinte:
 
 ```markdown
 
-/projeto
-├── /admin                   # Interface de administração
-│   ├── index.php            # Página principal do admin para upload e configuração
-│   ├── /css                 # Arquivos CSS para a interface do admin
-│   ├── /js                  # Arquivos JS para a interface do admin
-│   └── /uploads             # Armazena arquivos temporários enviados pelo admin
-│
-├── /user                    # Interface do usuário
-│   ├── index.php            # Página principal do usuário (exibe vídeos e fotos)
-│   ├── /css                 # Arquivos CSS para a interface do usuário
-│   └── /js                  # Arquivos JS para o usuário
-│
-├── /uploads                 # Armazena os vídeos e fotos enviados
-│   ├── /videos              # Pasta para vídeos
-│   └── /photos              # Pasta para fotos
-│
-└── /config.json             # Arquivo JSON que armazena o tempo de exibição
+.
+├── README.md
+├── admin
+│   ├── config.json
+│   ├── css
+│   │   └── indexadmin.css
+│   ├── images
+│   │   └── senai-logo-0.png
+│   ├── js
+│   │   ├── indexadmin.js
+│   │   └── upload.js
+│   ├── php
+│   │   ├── delete_item.php
+│   │   ├── list_uploads.php
+│   │   ├── update_time.php
+│   │   └── upload.php
+│   └── uploads
+│       ├── photos
+│       └── videos
+├── user
+│   ├── css
+│   │   └── indexuser.css
+│   ├── js
+│   │   └── indexuser.js
+│   └── indexuser.html
+└── index.html
+
+
 ```
 
 ## Funcionalidades
