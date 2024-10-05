@@ -5,37 +5,46 @@ body {
     margin: 0;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 100vh; /* Garante que o corpo tenha pelo menos a altura da tela */
 }
 
-/* Estilos do cabeçalho */
 header {
-    background-color: #004080; /* Azul escuro */
-    color: white;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    position: fixed; /* Fixo no topo da página */
+    width: 100%; /* Largura total */
+    top: 0; /* Alinha ao topo */
+    left: 0; /* Alinha à esquerda */
+    z-index: 1000; /* Garante que o cabeçalho fique sobre outros elementos */
+    background-color: #045cac; /* Cor de fundo inspirada pelo SENAI */
 }
 
-header img {
-    height: 50px;
-    margin-bottom: 10px; /* Adicionado para espaçamento abaixo da imagem */
+.logo {
+    height: auto; /* Ajusta a altura da logo automaticamente */
+    max-height: 60px; /* Define a altura máxima da logo */
 }
 
-header h2 {
-    margin: 0;
-    font-size: 24px;
+h1 {
+    font-size: 1.5rem; /* Tamanho da fonte */
+    font-family: "Arial", sans-serif; /* Fonte do texto */
+    color: #fff; /* Cor do texto */
+    text-align: center; /* Alinha o texto ao centro */
 }
 
 /* Estilos para o conteúdo principal */
 main {
-    padding: 30px;
+    padding: 80px 30px 80px; /* Adiciona padding superior e inferior para distanciar do cabeçalho e rodapé */
     text-align: center;
-    flex: 1;
+    flex: 1; /* Permite que o main preencha o espaço restante */
 }
 
+.form-control {
+    width: 80%; /* Aumentado para mais responsividade */
+    max-width: 400px; /* Limite máximo para maior controle em telas grandes */
+    text-align: center;
+}
+
+/* Títulos */
 h1 {
-    color: #004080; /* Azul escuro */
+    color: #045cac; /* Azul escuro */
     font-size: 28px; /* Tamanho da fonte aumentado */
     margin-bottom: 20px; /* Espaçamento inferior */
 }
@@ -45,186 +54,178 @@ input[type="file"] {
     display: none; /* Oculta o input de arquivo */
 }
 
-/* Estilos para o drag-and-drop */
 #drop-zone {
-    border: 2px dashed #007bff; /* Azul padrão */
-    border-radius: 10px;
-    padding: 40px; /* Aumentado para melhor área de clique */
-    text-align: center;
-    color: #007bff;
-    margin: 20px 0; /* Espaçamento vertical */
+    border: 2px dashed #045cac; /* Borda azul */
+    border-radius: 10px; /* Bordas arredondadas */
+    padding: 30px;
     cursor: pointer;
-    transition: background-color 0.3s ease, border-color 0.3s ease; /* Transição suave */
-}
-
-#drop-zone:hover {
-    background-color: #e0f0ff; /* Azul claro */
+    margin-bottom: 20px;
+    transition: background-color 0.3s, border-color 0.3s; /* Transições suaves */
 }
 
 #drop-zone.dragging {
-    background-color: #e6f7ff; /* Azul claro ao arrastar */
+    background-color: rgba(0, 64, 128, 0.1); /* Cor de fundo ao arrastar */
+    border-color: #0080ff; /* Cor da borda ao arrastar */
 }
 
-/* Estilos para os botões */
-button {
-    background-color: #007bff; /* Azul padrão do Bootstrap */
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    margin-top: 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s, transform 0.2s; /* Transições suaves */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-}
-
-button:hover {
-    background-color: #0056b3; /* Azul mais escuro ao passar o mouse */
-    transform: scale(1.05); /* Efeito de aumento ao passar o mouse */
-}
-
-/* Estilos para a área de exibição */
-#display-area {
-    border: 1px solid #ccc;
-    padding: 10px;
-    height: 400px; /* Tamanho fixo para o display */
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px 0; /* Espaçamento vertical */
-}
-
-/* Estilos para os itens carregados */
-.uploaded-items {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column; /* Alinha itens verticalmente */
-    align-items: center; /* Centraliza itens */
-}
-
-.uploaded-items .item {
-    margin: 10px;
-    display: inline-block;
-    position: relative;
-    width: 200px; /* Largura dos itens */
-    text-align: center;
-    border: 1px solid #ccc; /* Borda sutil */
-    border-radius: 5px; /* Cantos arredondados */
-    overflow: hidden; /* Para garantir que o conteúdo não vaze */
-    background-color: white; /* Fundo branco */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    transition: transform 0.2s; /* Transição suave */
-}
-
-.uploaded-items .item:hover {
-    transform: translateY(-5px); /* Efeito de levitação ao passar o mouse */
-}
-
-.uploaded-items img,
-.uploaded-items video {
-    width: 100%;
-    border-radius: 5px;
-}
-
-/* Estilos para o botão de deletar */
-.delete-btn {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 5px;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-/* Estilos para o campo de tempo */
-.uploaded-items input[type="number"] {
-    width: 100%; /* Ajusta a largura do campo de tempo */
-    padding: 10px; /* Adiciona espaço interno */
-    margin-top: 10px; /* Espaço acima do campo */
-    border: 1px solid #ccc; /* Borda sutil */
-    border-radius: 5px; /* Cantos arredondados */
-    font-size: 16px; /* Tamanho da fonte maior */
-    transition: border-color 0.3s; /* Transição suave na borda */
-}
-
-.uploaded-items input[type="number"]:hover {
-    border-color: #007bff; /* Azul ao passar o mouse */
-}
-
-/* Estilos para a mensagem de feedback */
+/* Estilos para as mensagens de feedback */
 .alert {
-    padding: 10px;
     margin-top: 20px;
-    border-radius: 5px; /* Bordas arredondadas */
-    display: none; /* Inicialmente oculto */
 }
 
-/* Estilos do rodapé */
-footer {
-    background-color: #004080; /* Azul escuro */
-    color: white;
-    text-align: center;
+/* Estilos para a lista de pré-visualização */
+#file-preview-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px; /* Adicionado espaçamento superior */
+}
+
+#file-preview-list li {
+    background-color: #e7f3fe; /* Fundo leve */
     padding: 10px;
-    width: 100%;
-    margin-top: auto; /* Garante que o rodapé fique ao final da página */
+    border: 1px solid #045cac; /* Borda azul */
+    border-radius: 5px; /* Bordas arredondadas */
+    margin-bottom: 5px;
+    display: flex; /* Flexbox para alinhar texto e botão de cancelar */
+    justify-content: space-between; /* Espalha os itens */
+    align-items: center; /* Centraliza verticalmente */
 }
 
-/* Estilos responsivos */
+/* Estilos para o botão de upload */
+#upload-btn {
+    background-color: #28a745; /* Verde */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Transição suave */
+    margin-top: 20px; /* Espaçamento superior */
+}
+
+#upload-btn:hover {
+    background-color: #218838; /* Verde escuro */
+}
+
+/* Estilos para a lista de uploads */
+#uploaded-list {
+    margin-top: 30px;
+    text-align: left; /* Alinhamento à esquerda para a lista de uploads */
+}
+
+/* Estilo dos itens na lista de uploads */
+.item {
+    display: flex;
+    align-items: center; /* Alinhamento centralizado verticalmente */
+    justify-content: space-between; /* Alinha imagem/vídeo e botão */
+    margin-bottom: 15px; /* Espaçamento inferior */
+    padding: 10px; /* Adiciona padding interno */
+    background-color: #f9f9f9; /* Fundo levemente cinza */
+    border-radius: 5px; /* Bordas arredondadas */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
+}
+
+.item img, .item video {
+    width: 50px;
+    height: auto;
+}
+
+/* Estilo do campo de tempo de exibição */
+.item .form-control {
+    width: 80px;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.item .btn {
+    margin-left: 10px;
+}
+
+/* Estilo da barra de progresso */
+.progress {
+    height: 20px;
+    margin-top: 10px;
+}
+
+.progress-bar {
+    width: 0%;
+}
+
+/* Efeitos de transição para exibição */
+#display-area {
+    position: relative;
+    overflow: hidden; /* Oculta qualquer parte que exceda a área de exibição */
+    margin-top: 20px; /* Espaçamento superior */
+}
+
+.fade-in {
+    opacity: 1;
+    transition: opacity 1s ease-in; /* Duração do fade-in */
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 1s ease-out; /* Duração do fade-out */
+}
+
+/* Responsividade */
 @media (max-width: 768px) {
-    header h2 {
-        font-size: 20px;
-    }
-
-    header img {
-        height: 40px;
-    }
-
-    button {
-        padding: 12px 20px;
-        font-size: 14px; /* Tamanho da fonte reduzido */
-    }
-
     #drop-zone {
-        padding: 30px; /* Ajustado para telas menores */
+        padding: 20px; /* Reduz o padding em telas menores */
     }
 
-    .uploaded-items .item {
-        width: 150px; /* Largura menor para telas pequenas */
+    #upload-btn {
+        width: 100%; /* Botão ocupa a largura total */
+        padding: 12px 0; /* Aumenta o padding vertical */
     }
 
-    .uploaded-items input[type="number"] {
-        font-size: 14px; /* Tamanho da fonte reduzido */
+    .item {
+        flex-direction: column; /* Coloca a imagem/vídeo em cima do botão */
+        align-items: center; /* Centraliza os itens */
     }
 }
 
-@media (max-width: 480px) {
-    header h2 {
-        font-size: 18px;
+@media (max-width: 576px) {
+    h1 {
+        font-size: 24px; /* Reduz o tamanho do título */
     }
 
-    header img {
-        height: 30px;
+    #uploaded-list {
+        margin-top: 20px; /* Diminui o espaçamento superior da lista */
     }
 
-    button {
-        padding: 10px 15px;
-        font-size: 12px; /* Tamanho da fonte reduzido */
+    #file-preview-list li {
+        font-size: 14px; /* Diminui o tamanho da fonte na lista de pré-visualização */
     }
 
-    #drop-zone {
-        padding: 20px; /* Ajustado para telas muito pequenas */
+    #file-preview-list {
+        margin-top: 20px; /* Adiciona margem acima da lista de pré-visualização */
     }
+}
 
-    .uploaded-items .item {
-        width: 100px; /* Largura menor para telas muito pequenas */
-    }
+footer {
+    background-color: #045cac; /* Cor de fundo inspirada pelo SENAI */
+    color: #fff; /* Cor do texto */
+    position: fixed; /* Fixo no rodapé da página */
+    width: 100%; /* Largura total */
+    bottom: 0; /* Alinha ao fundo */
+    left: 0; /* Alinha à esquerda */
+    z-index: 1000; /* Garante que o rodapé fique sobre outros elementos */
+    text-align: center;
+    font-size: 30px;
+}
 
-    .uploaded-items input[type="number"] {
-        font-size: 12px; /* Tamanho da fonte reduzido */
-    }
+footer p {
+    margin: 0; /* Remove a margem padrão dos parágrafos */
+    font-size: 1rem; /* Tamanho da fonte */
+}
+
+/* Remove a margem superior do primeiro parágrafo */
+footer .mb-1 {
+    margin-bottom: 0.5rem !important;
+}
+
+/* Remove a margem inferior do segundo parágrafo */
+footer .mb-0 {
+    margin-bottom: 0 !important;
 }

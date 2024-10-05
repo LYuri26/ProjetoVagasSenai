@@ -11,7 +11,7 @@ $jsonPath = '../config.json';
 $jsonData = json_decode(file_get_contents($jsonPath), true);
 $data = json_decode(file_get_contents('php://input'), true);
 $id = $data['id'];
-$display_time = $data['display_time'];
+$display_time = (int)$data['display_time']; // Converte para inteiro, se necessário
 
 // Atualiza o tempo de exibição
 foreach ($jsonData as &$item) {

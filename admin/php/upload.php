@@ -26,6 +26,19 @@ if (!file_exists($jsonPath)) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['files'])) {
     $files = $_FILES['files'];
     $response = ['success' => true, 'message' => 'Upload realizado com sucesso!'];
+    $newItems = []; // Array para armazenar novos itens
+
+    // Carrega os dados existentes do arquivo JSON
+    $jsonData = json_decode(file_get_contents($jsonPath), true);
+    
+    // Inicializa o próximo ID
+    $nextId = 1;
+    
+    // Se houver itens, encontra o maior ID existente
+    if (!empty($jsonData)) {
+        $existingIds = array_column($jsonData, 'id'); // Supondo que cada item tenha uma chave 'id'
+        $nextId = max($existingIds) + 1; // Incrementa o maior ID para o próximo
+    }
 
     for ($i = 0; $i < count($files['name']); $i++) {
         $fileName = basename($files['name'][$i]);
@@ -48,23 +61,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['files'])) {
 
         // Faz o upload do arquivo
         if (move_uploaded_file($fileTmp, $uploadPath)) {
-            // Carrega os dados existentes do arquivo JSON
-            $jsonData = json_decode(file_get_contents($jsonPath), true);
-            $id = count($jsonData) + 1; // ID único simples, incrementa com base no número de itens existentes
-
-            // Adiciona o novo item ao JSON
-            $jsonData[] = [
-                'id' => $id,
+            // Adiciona o novo item ao array
+            $newItems[] = [
+                'id' => $nextId,
                 'file' => $fileName,
                 'type' => $type,
             ];
-
-            // Grava no JSON
-            file_put_contents($jsonPath, json_encode($jsonData, JSON_PRETTY_PRINT));
+            $nextId++; // Incrementa o próximo ID
         } else {
             $response['success'] = false;
             $response['message'] = 'Falha ao mover o arquivo: ' . $fileName;
         }
+    }
+
+    // Se houver novos itens, adiciona ao JSON e grava
+    if (!empty($newItems)) {
+        $jsonData = array_merge($jsonData, $newItems); // Junta os novos itens aos existentes
+        file_put_contents($jsonPath, json_encode($jsonData, JSON_PRETTY_PRINT));
     }
 
     echo json_encode($response);
