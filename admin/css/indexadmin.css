@@ -111,11 +111,13 @@ input[type="file"] {
 #uploaded-list {
     margin-top: 30px;
     text-align: left; /* Alinhamento à esquerda para a lista de uploads */
+    width: 30%;
+    margin-left: auto; /* Adiciona margem automática à esquerda */
+    margin-right: auto; /* Adiciona margem automática à direita */
 }
 
 /* Estilo dos itens na lista de uploads */
 .item {
-    display: flex;
     align-items: center; /* Alinhamento centralizado verticalmente */
     justify-content: space-between; /* Alinha imagem/vídeo e botão */
     margin-bottom: 15px; /* Espaçamento inferior */
@@ -183,6 +185,11 @@ input[type="file"] {
         flex-direction: column; /* Coloca a imagem/vídeo em cima do botão */
         align-items: center; /* Centraliza os itens */
     }
+
+    #uploaded-list {
+        width: 60%; /* Ajusta a largura para 60% em telas médias */
+    }
+
 }
 
 @media (max-width: 576px) {
@@ -192,6 +199,7 @@ input[type="file"] {
 
     #uploaded-list {
         margin-top: 20px; /* Diminui o espaçamento superior da lista */
+        width: 80%; /* Ajusta a largura para 80% em telas pequenas */
     }
 
     #file-preview-list li {
@@ -228,4 +236,22 @@ footer .mb-1 {
 /* Remove a margem inferior do segundo parágrafo */
 footer .mb-0 {
     margin-bottom: 0 !important;
+}
+
+.item {
+    display: flex;
+    align-items: center; /* Align items in the center vertically */
+    justify-content: center; /* Center all items horizontally */
+    gap: 10px; /* Space between elements */
+    margin-bottom: 10px; /* Add space between items */
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center; /* Vertically center the input and text */
+    gap: 5px; /* Space between the input and the span */
+}
+
+.btn {
+    margin-left: 5px; /* Space between buttons */
 }

@@ -9,6 +9,9 @@ $uploadDirImages = '../uploads/photos/';
 $uploadDirVideos = '../uploads/videos/';
 $jsonPath = '../config.json';
 
+// Definindo o tipo de conteúdo como JSON
+header('Content-Type: application/json');
+
 // Verifica se os diretórios existem, se não, cria-os
 if (!is_dir($uploadDirImages)) {
     mkdir($uploadDirImages, 0777, true);
@@ -40,6 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['files'])) {
         $nextId = max($existingIds) + 1; // Incrementa o maior ID para o próximo
     }
 
+    // Loop para processar os arquivos enviados
     for ($i = 0; $i < count($files['name']); $i++) {
         $fileName = basename($files['name'][$i]);
         $fileTmp = $files['tmp_name'][$i];
@@ -53,6 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['files'])) {
             $uploadPath = $uploadDirVideos . $fileName;
             $type = 'video';
         } else {
+            // Tipo de arquivo inválido
             $response['success'] = false;
             $response['message'] = 'Tipo de arquivo inválido: ' . $fileType;
             echo json_encode($response);
@@ -69,8 +74,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['files'])) {
             ];
             $nextId++; // Incrementa o próximo ID
         } else {
+            // Falha ao mover o arquivo
             $response['success'] = false;
             $response['message'] = 'Falha ao mover o arquivo: ' . $fileName;
+            echo json_encode($response);
+            exit;
         }
     }
 
@@ -80,9 +88,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['files'])) {
         file_put_contents($jsonPath, json_encode($jsonData, JSON_PRETTY_PRINT));
     }
 
+    // Resposta de sucesso
     echo json_encode($response);
+    exit; // Evita qualquer saída adicional
 } else {
-    echo json_encode(['success' => false, 'message' => 'Nenhum arquivo enviado']);
+    // Nenhum arquivo enviado
+    $response = ['success' => false, 'message' => 'Nenhum arquivo enviado'];
+    echo json_encode($response);
+    exit; // Evita qualquer saída adicional
 }
-exit; // Adiciona isto para evitar saída adicional
 ?>

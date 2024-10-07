@@ -11,7 +11,7 @@ function fetchDataAndStartSlideshow() {
         })
         .then(data => {
             console.log("Dados carregados:", data); // Log dos dados carregados
-            
+
             // Verifica se os dados foram alterados
             if (JSON.stringify(data) !== JSON.stringify(previousData)) {
                 previousData = data; // Atualiza os dados anteriores
@@ -36,6 +36,7 @@ function startSlideshow(slides) {
     let isVideoPlaying = false; // Estado para verificar se um vídeo está sendo reproduzido
     let shouldUnmuteAll = false; // Estado para verificar se todos os vídeos devem ser desmutados
 
+    // Função para mostrar o item atual (imagem ou vídeo)
     function showItem(index) {
         const item = slides[index]; // Acesse o item diretamente do array
         displayArea.innerHTML = ""; // Limpa o display atual
@@ -49,8 +50,8 @@ function startSlideshow(slides) {
             displayArea.appendChild(img);
             isVideoPlaying = false; // Reseta o estado do vídeo
 
-            // Define um tempo padrão de exibição (em milissegundos)
-            const displayTime = 3000; // Tempo de exibição da imagem
+            // Define um tempo padrão de exibição (em milissegundos) com base no valor do item
+            const displayTime = item.display_time * 1000 || 3000; // Tempo de exibição da imagem (usando display_time do JSON)
             setTimeout(() => {
                 img.classList.remove("fade-in"); // Remove a classe fade in antes de aplicar fade out
                 img.classList.add("fade-out"); // Adiciona a classe de fade out
@@ -103,3 +104,16 @@ function startSlideshow(slides) {
 
     showItem(currentIndex); // Inicia o slideshow
 }
+
+// Função para atualizar o relógio no cabeçalho
+function updateClock() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    const timeString = `${hours}:${minutes}:${seconds}`;
+    document.getElementById('clock').textContent = timeString;
+}
+
+// Atualizar o relógio a cada segundo
+setInterval(updateClock, 1000);

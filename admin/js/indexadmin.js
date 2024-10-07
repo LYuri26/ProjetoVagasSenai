@@ -32,7 +32,7 @@ function showItem(index) {
         const img = document.createElement("img");
         img.src = "./uploads/photos/" + item.file;
         img.alt = "Imagem carregada";
-        img.style.width = "100%"; // Ajusta para o tamanho da tela
+        img.style.width = "20%"; // Ajusta para o tamanho da tela
         img.style.height = "auto";
         displayArea.appendChild(img);
 

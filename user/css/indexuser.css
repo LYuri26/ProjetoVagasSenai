@@ -1,0 +1,184 @@
+/* Define que todos os elementos devem respeitar o box-sizing */
+* {
+    box-sizing: border-box;
+}
+
+/* Remove margens e preenchimentos da página */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Remove a rolagem */
+    background-color: black; /* Fundo preto para contraste */
+}
+
+header {
+    position: fixed; /* Fixo no topo da página */
+    width: 100%; /* Largura total */
+    top: 0; /* Alinha ao topo */
+    left: 0; /* Alinha à esquerda */
+    z-index: 1000; /* Garante que o cabeçalho fique sobre outros elementos */
+    background-color: #045cac; /* Cor de fundo inspirada pelo SENAI */
+}
+
+.logo {
+    height: auto; /* Ajusta a altura da logo automaticamente */
+    max-height: 60px; /* Define a altura máxima da logo */
+}
+
+h1 {
+    font-size: 1.5rem; /* Tamanho da fonte */
+    font-family: "Arial", sans-serif; /* Fonte do texto */
+    color: #fff; /* Cor do texto */
+    text-align: center; /* Alinha o texto ao centro */
+}
+
+/* Área de exibição do slideshow */
+#display-area {
+    width: 100%;
+    height: calc(100% - 120px); /* Desconta o cabeçalho e o rodapé */
+    display: flex;
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    overflow: hidden; /* Impede rolagem ao exibir mídia */
+    position: relative; /* Para permitir posicionamento absoluto dos itens */
+    margin-top: 60px; /* Ajusta para não ficar abaixo do header */
+}
+
+/* Imagens */
+img {
+    max-width: 100%; /* Limita a largura ao tamanho da tela, respeitando a proporção */
+    height: auto; /* Mantém a altura proporcional */
+    object-fit: contain; /* Garante que a imagem caiba sem estourar */
+    position: relative; /* Sem posicionamento absoluto para imagens */
+}
+
+/* Vídeos em full screen */
+video {
+    width: 100%;
+    height: 90%;
+    object-fit: cover; /* O vídeo preenche toda a área visível */
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 80px;
+}
+
+/* Centralização de conteúdo principal */
+main {
+    padding: 20px; /* Preenchimento em torno do conteúdo */
+    text-align: center; /* Centraliza o texto */
+    flex: 1; /* O conteúdo principal ocupa todo o espaço disponível */
+}
+
+/* Formulários e campos de entrada */
+.form-control {
+    width: 90%; /* Ocupa 90% da tela em dispositivos pequenos */
+    max-width: 400px; /* Limite máximo de largura */
+    text-align: center; /* Centraliza o texto no formulário */
+}
+
+/* Rodapé */
+footer {
+    background-color: #045cac; /* Cor de fundo azul inspirada no SENAI */
+    color: #fff; /* Cor do texto branco */
+    position: fixed; /* Fixa o rodapé no fundo da página */
+    width: 100%; /* Ocupa toda a largura da página */
+    height: 60px; /* Altura fixa do rodapé */
+    bottom: 0; /* Posiciona no fundo */
+    left: 0; /* Posiciona na esquerda */
+    z-index: 1000; /* Garante que o rodapé fique sobre outros elementos */
+    text-align: center; /* Alinha o texto no centro */
+    line-height: 60px; /* Alinha verticalmente o texto */
+}
+
+/* Estilos para o texto no rodapé */
+footer p {
+    margin: 0; /* Remove margens nos parágrafos */
+    font-size: 1rem; /* Tamanho do texto */
+}
+
+/* Animação de fade-in */
+.fade-in {
+    animation: fadeIn 1s forwards; /* A imagem/vídeo aparece suavemente */
+}
+
+/* Animação de fade-out */
+.fade-out {
+    animation: fadeOut 1s forwards; /* A imagem/vídeo desaparece suavemente */
+}
+
+/* Definindo a animação de fadeIn */
+@keyframes fadeIn {
+    from {
+        opacity: 0; /* Começa invisível */
+    }
+    to {
+        opacity: 1; /* Termina visível */
+    }
+}
+
+/* Definindo a animação de fadeOut */
+@keyframes fadeOut {
+    from {
+        opacity: 1; /* Começa visível */
+    }
+    to {
+        opacity: 0; /* Termina invisível */
+    }
+}
+
+/* Adicionando animações para cabeçalho e rodapé */
+@keyframes fadeInOut {
+    0%, 85% {
+        opacity: 1; /* Fica visível por 85% do tempo (30 segundos de 35 segundos totais) */
+    }
+    95% {
+        opacity: 0; /* Começa a desaparecer perto de 85% até 95% */
+    }
+    100% {
+        opacity: 1; /* Volta a aparecer suavemente */
+    }
+}
+
+/* Definindo animação para o cabeçalho e rodapé */
+header, footer {
+    animation: fadeInOut 35s ease-in-out infinite; /* Duração total de 35 segundos */
+}
+
+#clock {
+    font-size: 2rem; /* Tamanho maior da fonte para destaque */
+    font-weight: bold;
+    animation: rgbCycleSmooth 10s infinite; /* Ciclo de cores suave com duração de 10 segundos */
+    transition: color 1s ease-in-out; /* Transição suave entre as cores */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); /* Adiciona um leve sombreamento */
+}
+
+/* Animação de ciclo de cores RGB com transições suaves */
+@keyframes rgbCycleSmooth {
+    0% {
+        color: #ff0000; /* Vermelho */
+    }
+    15% {
+        color: #ff7f00; /* Laranja */
+    }
+    30% {
+        color: #ffff00; /* Amarelo */
+    }
+    45% {
+        color: #00ff00; /* Verde */
+    }
+    60% {
+        color: #0000ff; /* Azul */
+    }
+    75% {
+        color: #4b0082; /* Índigo */
+    }
+    90% {
+        color: #8b00ff; /* Violeta */
+    }
+    100% {
+        color: #ff0000; /* Volta ao Vermelho */
+    }
+}
